@@ -27,6 +27,18 @@ describe 'login workflow' do
     expect(page).to have_content("Log Out")
     expect(page).to_not have_content("I already have an account")
   end
+  it 'blocks unsuccessful logins' do
+    user = User.create(username: 'KeeganTwoWords', password: "test")
+
+    visit root_path
+    click_on 'I already have an account'
+    expect(current_path).to eq(login_path)
+    fill_in :username, with: user.username
+    fill_in :password, with: 'bad password'
+
+    click_on "Log In"
+    expect(current_path).to eq(login_path)
+  end
   it 'allows registerd users to log out' do
     user = User.create(username: 'KeeganTwoWords', password: "test")
 

@@ -18,4 +18,14 @@ describe "User can create a new song" do
     expect(current_path).to eq(songs_path)
     expect(page).to have_content(song_title)
   end
+  it "but blocked if form data is invalid" do
+    artist = Artist.create(name: 'Wild Cherry')
+
+    visit new_artist_song_path(artist)
+
+    click_on 'Create Song'
+
+    expect(current_path).to eq(artist_songs_path(artist))
+    expect(page).to have_button('Create Song')
+  end
 end

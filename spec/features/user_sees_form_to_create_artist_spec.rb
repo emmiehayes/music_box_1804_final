@@ -12,4 +12,12 @@ describe 'user can create artist' do
 
     expect(page).to have_content(artist_name)
   end
+  it 'is blocked if data is bad' do
+    visit new_artist_path
+
+    click_on "Create Artist"
+
+    expect(current_path).to eq(artists_path)
+    expect(page).to have_button("Create Artist")
+  end
 end
