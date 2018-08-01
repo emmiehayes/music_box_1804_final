@@ -59,4 +59,22 @@ describe "Visitor visits awards index" do
 
     expect(current_path).to eq(award_path(award_1))
   end
+  it 'visits awards index and click award name i see all songs and years for that award' do
+    artist_1 = Artist.create(name: 'Journey')
+
+    song_1 = artist_1.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808)
+    song_2 = artist_1.songs.create(title: "Another Song", length: 320, play_count: 390808)
+
+    award_1 = Award.create(name: 'Best')
+    award_2 = Award.create(name: 'Worst')
+
+    sa1 = SongAward.create(song: song_1, award: award_1, year: 1997)
+    sa2 = SongAward.create(song: song_2, award: award_1, year: 1998)
+
+
+    visit award_path(award_1)
+
+    expect(page).to have_content("Best\nSongs with this Award\n#{song_1.title} in #{sa1.year} #{song_2.title} in #{sa2.year}")
+
+  end
 end

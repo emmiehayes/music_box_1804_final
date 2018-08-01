@@ -1,1 +1,11 @@
 <%= @award.name %>
+
+  <p>Songs with this Award</p>
+  <ul>
+  <% @award.songs.each do |song| %>
+  <li><%= song.title %> in
+      <% song.song_awards.each do |song_award| %>
+      <%= song_award.year %> </li>
+      <% end %>
+  <% end %>
+</ul>
