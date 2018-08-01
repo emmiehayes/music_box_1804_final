@@ -14,6 +14,6 @@ describe "Admin visits awards index" do
     expect(page).to have_content('Worst')
     expect(page).to have_content('Create A New Award')
     expect(page).to have_content('Name')
-    expect(page).to have_button('Submit')
+    expect(page).to have_button('Create Award')
   end
 end
