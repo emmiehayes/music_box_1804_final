@@ -3,5 +3,11 @@
 <% @songs.each do |song| %>
   <h2><%=song.title %></h2>
   <p>Plays: <%=song.play_count%></p>
+  <p>Awards for this Song</p>
+  <ul>
+  <% song.awards.each do |award| %>
+  <li><%= award.name %> </li>
+  <% end %>
+</ul>
   <p><%= button_to 'Add Song', carts_path(song_id: song.id), class: 'btn btn-danger' %></p>
 <%end%>
