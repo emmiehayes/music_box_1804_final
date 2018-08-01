@@ -5,7 +5,7 @@ describe Award, type: :model do
     it {should validate_presence_of(:name)}
   end
 
-  # describe 'relationships' do
-  #   it {should have_many(:songs)}
-  # end
+  describe 'relationships' do
+    it{should have_many(:songs).through(:song_awards)}
+  end
 end
