@@ -48,4 +48,15 @@ describe "Visitor visits awards index" do
     expect(page).to have_content("Awards for this Song\n#{award_1.name} in #{sa1.year} #{award_2.name} in #{sa2.year}")
     expect(page).to have_content("Awards for this Song\n#{award_3.name} in #{sa3.year} #{award_4.name} in #{sa4.year}")
   end
+
+  it 'visit award index i can click award to go to award show page' do
+    award_1 = Award.create(name: 'Best')
+    award_2 = Award.create(name: 'Worst')
+
+    visit awards_path
+
+    click_link 'Best'
+
+    expect(current_path).to eq(award_path(award_1))
+  end
 end
